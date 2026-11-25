@@ -1,3 +1,3 @@
-# Trabalho-aed-2 \n
-#linguagem C \n
+# Trabalho-aed-2 
+#linguagem C 
 Participantes: Alvaro,Rhuan,Nicole e Thais
