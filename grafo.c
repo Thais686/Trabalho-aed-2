@@ -1,5 +1,6 @@
 #include "grafo.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 Grafo *criarGrafo(int V){
     if(V<=0) return NULL; //não faz sentido criar gráfo sem vértices 
@@ -106,12 +107,12 @@ void imprimirGrafo(Grafo *g){
         return;
     }
 
-    printf("Número de vértices do grafo: %d\n", g->V);
-    printf("Número de arestas do grafo: %d\n", g->A);
+    printf("Numero de vertices do grafo: %d\n", g->V);
+    printf("Numero de arestas do grafo: %d\n", g->A);
 
-    printf("======== GRAFO (lista adjacência) ========\n");
+    printf("======== GRAFO (lista adjacencia) ========\n");
     for(int i=0; i<g->V; i++){//percorre ccada vértice da lista de adjacência
-        printf("Vértice %d: ", i);
+        printf("Vertice %d: ", i);
         No *atual = g->lista[i]; //cabeça da lista de adj de vertice i
         while(atual!=NULL){//percorre a lista
             printf(" -> (destino: %d, peso: %d)", atual->destino, atual->peso);
