@@ -101,9 +101,37 @@ Grafo *lerGrafo(const char *nomeArq, int direcionado){
 }
 
 void imprimirGrafo(Grafo *g){
+    if(g==NULL){
+        printf("Grafo vazio\n");
+        return;
+    }
 
+    printf("Número de vértices do grafo: %d\n", g->V);
+    printf("Número de arestas do grafo: %d\n", g->A);
+
+    printf("======== GRAFO (lista adjacência) ========\n");
+    for(int i=0; i<g->V; i++){//percorre ccada vértice da lista de adjacência
+        printf("Vértice %d: ", i);
+        No *atual = g->lista[i]; //cabeça da lista de adj de vertice i
+        while(atual!=NULL){//percorre a lista
+            printf(" -> (destino: %d, peso: %d)", atual->destino, atual->peso);
+            atual = atual->prox; //avança para o prox nó
+        }
+        printf("\n");
+    }
 }
 
 void liberarGrafo(Grafo *g){
+    if(g==NULL) return;
 
+    for(int i=0; i<g->V; i++){ //percorre cada vértice da lista de adj
+        No *atual = g->lista[i]; //cabeça da lista do vértice i
+        while(atual!=NULL){ //percorre a lista de adj
+            No *temp = atual; //guarda o nó atual
+            atual = atual->prox; //avança o nó
+            free(temp); //libera o nó atual que foi guardado
+        }
+    }
+    free(g->lista); //libera a lista de adjac~encia
+    free(g); //libera o grafo
 }

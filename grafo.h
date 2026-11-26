@@ -1,3 +1,7 @@
+#ifndef GRAFO_H
+#define GRAFO_H
+#endif
+
 typedef struct No { 
 int destino;        //diz quem é o vizinho alcançado
 int peso;           //valor da arresta
