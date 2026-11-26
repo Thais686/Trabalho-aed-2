@@ -67,6 +67,37 @@ void addArresta(Grafo *g, int origem, int destino, int peso, int direcionado){
 
 Grafo *lerGrafo(const char *nomeArq, int direcionado){
     //*nomeArq -> endereço de memória do primeiro caractere do arquivo .txt
+    FILE *arq = fopen(nomeArq, "r");
+    if(arq==NULL){
+        printf("Erro ao abrir o arquivo %s\n", nomeArq);
+        return NULL;
+    } 
+
+    int V, A; //variaveis para guardar o num de V e A vindas do arquivo
+    if(fscanf(arq, "%d %d", &V, &A) != 2){ //lê o dois primeiro inteiros do arq e vê se foi lido 2 valores, se ñ...
+        printf("Erro ao ler o número de vértices e arestas do arquivo");
+        fclose(arq);
+        return NULL;
+    }
+
+    Grafo *g = criarGrafo(V); //cria grafo com num de Vertices lido do arqivo
+    if(g==NULL){
+        printf("Erro ao criar o grafo");
+        fclose(arq);
+        return NULL;
+    }
+    for(int i=0; i<A; i++){
+        int origem, destino, peso; //variáveis para armazenar cada valor por linha do arq
+        if(fscanf(arq, "%d %d %d", &origem, &destino, &peso) != 3){ //verifica s leu 3 valores na linha(arresta), se ñ...
+            printf("Erro ao ler as arestas do arquivo");
+            fclose(arq);
+            liberarGrafo(g);
+            return NULL;
+        }
+        addArresta(g, origem, destino, peso, direcionado);//insere a arresta na lista ordenada conforme o grafo, se é ou ñ direcionado
+    }
+    fclose(arq);
+    return g; //devolve o grafo criado e preenchido com os valores do arquivo
 }
 
 void imprimirGrafo(Grafo *g){
