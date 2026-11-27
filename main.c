@@ -1,5 +1,7 @@
 #include "grafo.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include "algoritmos.h"
 
 int main(){
     Grafo *g1 = lerGrafo("grafo1.txt", 0);
