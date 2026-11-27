@@ -19,5 +19,10 @@ int main(){
     liberarGrafo(g3);
     liberarGrafo(g4);
 
+    testarAlgoritmos(g1, "Grafo 1", 0);
+    testarAlgoritmos(g2, "Grafo 2", 1);
+    testarAlgoritmos(g3, "Grafo 3", 1);
+    testarAlgoritmos(g4, "Grafo 4", 1);
+
     return 0;
 }
