@@ -113,3 +113,31 @@ int temCicloNaoDirecionado(Grafo *g) {
     free(visitado);
     return 0;
 }
+
+void testarAlgoritmos(Grafo *g, const char *nome, int direcionado) {
+    if (g == NULL)
+        return;
+    printf("\n%s\n", nome);
+    if (direcionado) {
+        int *ordem = malloc(g->V * sizeof(int));
+        if (ordem == NULL)
+            return;
+        if (ordenacaoTopologica(g, ordem)) {
+            printf("Ordenacao topologica: ");
+            
+            for (int i = 0; i < g->V; i++)
+                printf("%d ", ordem[i]);
+
+            printf("\n");
+        } else {
+            printf("Nao existe ordenacao topologica.\n");
+        }
+        printf("Possui ciclo direcionado: %s\n",
+               temCicloDirecionado(g) ? "Sim" : "Nao");
+
+        free(ordem);
+    } else {
+        printf("Possui ciclo nao direcionado: %s\n",
+               temCicloNaoDirecionado(g) ? "Sim" : "Nao");
+    }
+}
